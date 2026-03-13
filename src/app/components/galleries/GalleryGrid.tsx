@@ -57,20 +57,20 @@ export default function GalleryGrid({ media }: GalleryGridProps) {
     <>
       <section className="bg-[#050505] pb-16 pt-6 md:pb-20 md:pt-8">
         <div className="section-shell">
-          <div className="mb-8 flex items-end justify-between gap-4">
+          <div className="mb-6 flex items-end justify-between gap-4 md:mb-8">
             <div>
               <p className="text-[10px] uppercase tracking-[0.32em] text-[#c6a66b] md:text-[11px]">
                 Gallery Media
               </p>
-              <h2 className="mt-3 font-[family:var(--font-heading)] text-3xl text-white md:text-4xl">
+              <h2 className="mt-3 font-[family:var(--font-heading)] text-2xl text-white md:text-4xl">
                 Photos & Videos
               </h2>
             </div>
 
-            <p className="text-sm text-white/45">{media.length} items</p>
+            <p className="text-xs text-white/45 md:text-sm">{media.length} items</p>
           </div>
 
-          <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+          <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3 xl:gap-5">
             {media.map((item, index) => (
               <GalleryMediaCard
                 key={item.id}
