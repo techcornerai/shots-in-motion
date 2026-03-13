@@ -1,0 +1,28 @@
+[
+  {
+    "id": "q-first-night-social",
+    "title": "Q First Night Social",
+    "slug": "q-first-night-social",
+    "eventDate": "March 2026",
+    "location": "Tampa, Florida",
+    "description": "An evening of connection, movement, and unforgettable moments captured in motion.",
+    "coverImage": "/galleries/q-first-night-social/cover.jpg",
+    "accessType": "private",
+    "password": "test123",
+    "published": true,
+    "downloadsEnabled": true
+  },
+  {
+    "id": "q-workshops",
+    "title": "Q Workshops",
+    "slug": "q-workshops",
+    "eventDate": "March 2026",
+    "location": "Tampa, Florida",
+    "description": "Workshop moments, learning, movement, and energy documented throughout the experience.",
+    "coverImage": "/galleries/q-workshops/cover.jpg",
+    "accessType": "private",
+    "password": "test123",
+    "published": true,
+    "downloadsEnabled": true
+  }
+]
