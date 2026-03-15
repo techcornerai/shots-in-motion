@@ -11,6 +11,10 @@ type GalleryPasswordGateProps = {
 export default function GalleryPasswordGate({
   gallery,
 }: GalleryPasswordGateProps) {
+  if (gallery.accessType === "public") {
+    return <GalleryGrid media={gallery.media} />;
+  }
+
   const storageKey = useMemo(
     () => `gallery-access-${gallery.slug}`,
     [gallery.slug]
@@ -41,32 +45,8 @@ export default function GalleryPasswordGate({
     setError("Incorrect password. Please try again.");
   }
 
-  function lockGallery() {
-    sessionStorage.removeItem(storageKey);
-    setIsUnlocked(false);
-  }
-
   if (isUnlocked) {
-    return (
-      <>
-        <section className="bg-[#050505] pt-8 pb-2">
-          <div className="section-shell flex items-center justify-between">
-            <p className="text-xs text-white/45">
-              This gallery is unlocked for your current session.
-            </p>
-
-            <button
-              onClick={lockGallery}
-              className="rounded-full border border-white/15 px-4 py-2 text-[10px] uppercase tracking-[0.22em] text-white/60 transition hover:bg-white/10"
-            >
-              Lock Gallery
-            </button>
-          </div>
-        </section>
-
-        <GalleryGrid media={gallery.media} />
-      </>
-    );
+    return <GalleryGrid media={gallery.media} />;
   }
 
   return (

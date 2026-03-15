@@ -1,10 +1,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
-import {
-  galleries,
-  type GalleryMediaItem,
-  type PrivateGallery,
-} from "@/data/galleries";
+import type { GalleryMediaItem, PrivateGallery } from "@/data/galleries";
+import { getPublishedGalleryBySlug as getPublishedGalleryMetaBySlug } from "@/lib/galleries-store";
 
 const IMAGE_EXTENSIONS = new Set([".jpg", ".jpeg", ".png", ".webp", ".avif"]);
 const VIDEO_EXTENSIONS = new Set([".mp4", ".mov", ".webm", ".m4v"]);
@@ -86,16 +83,10 @@ async function readGalleryMedia(slug: string): Promise<GalleryMediaItem[]> {
   return media;
 }
 
-export function getGalleryBySlug(slug: string) {
-  return galleries.find(
-    (gallery) => gallery.slug === slug && gallery.published
-  );
-}
-
-export async function getGalleryWithMedia(
+export async function getGalleryWithMediaBySlug(
   slug: string
 ): Promise<PrivateGallery | undefined> {
-  const gallery = getGalleryBySlug(slug);
+  const gallery = await getPublishedGalleryMetaBySlug(slug);
 
   if (!gallery) return undefined;
 
