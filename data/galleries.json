@@ -7,7 +7,7 @@
     "location": "Tampa, Florida",
     "description": "An evening of connection, movement, and unforgettable moments captured in motion.",
     "coverImage": "/galleries/q-first-night-social/cover.jpg",
-    "accessType": "private",
+    "accessType": "public",
     "password": "test123",
     "published": true,
     "downloadsEnabled": true

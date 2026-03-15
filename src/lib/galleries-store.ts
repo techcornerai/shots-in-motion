@@ -46,3 +46,25 @@ export async function getGalleryById(id: string) {
   const galleries = await readGalleries();
   return galleries.find((gallery) => gallery.id === id);
 }
+
+export async function updateGalleryById(
+  id: string,
+  updates: Partial<GalleryRecord>
+) {
+  const galleries = await readGalleries();
+
+  const index = galleries.findIndex((gallery) => gallery.id === id);
+
+  if (index === -1) {
+    return null;
+  }
+
+  galleries[index] = {
+    ...galleries[index],
+    ...updates,
+  };
+
+  await writeGalleries(galleries);
+
+  return galleries[index];
+}
