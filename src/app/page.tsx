@@ -10,7 +10,7 @@ export default function HomePage() {
       <Hero />
       <SelectedMoments3D />
       <CinematicDivider />
-      < SignatureMoments/>
+      {/* < SignatureMoments/> */}
             < PortfolioCategories/>
 
     </main>
