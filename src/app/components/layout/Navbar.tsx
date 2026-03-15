@@ -7,11 +7,11 @@ import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
-  { href: "/", label: "Portfolio" },
-  { href: "/", label: "Galleries" },
-  { href: "/", label: "Packages" },
-  { href: "/", label: "About" },
-  { href: "/", label: "Contact" },
+  { href: "/portfolio", label: "Portfolio" },
+  { href: "/galleries", label: "Galleries" },
+  { href: "/packages", label: "Packages" },
+  { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export default function Navbar() {
@@ -59,7 +59,7 @@ export default function Navbar() {
               width={170}
               height={58}
               priority
-              className="h-auto w-[150px] sm:w-[180px] md:w-[170px]"
+              className="h-auto w-[136px] sm:w-[152px] md:w-[170px]"
             />
           </Link>
 
@@ -85,7 +85,7 @@ export default function Navbar() {
 
           <div className="flex items-center gap-3">
             <Link
-              href="/booking"
+              href="/contact"
               className="hidden rounded-full border border-[#c6a66b]/40 px-5 py-2 text-xs uppercase tracking-[0.2em] text-[#c6a66b] transition hover:bg-[#c6a66b] hover:text-black lg:inline-flex"
             >
               Book
@@ -96,9 +96,9 @@ export default function Navbar() {
               aria-label={mobileOpen ? "Close menu" : "Open menu"}
               aria-expanded={mobileOpen}
               onClick={() => setMobileOpen((prev) => !prev)}
-              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-white transition hover:bg-white/10 lg:hidden"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-black/35 text-white transition hover:bg-white/10 lg:hidden"
             >
-              {mobileOpen ? <X size={20} /> : <Menu size={35} />}
+              {mobileOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
           </div>
         </div>
@@ -106,35 +106,35 @@ export default function Navbar() {
 
       <div
         className={[
-          "fixed inset-0 z-40 lg:hidden transition-all duration-500",
+          "fixed inset-0 z-[60] lg:hidden transition-all duration-500",
           mobileOpen
             ? "pointer-events-auto opacity-100"
             : "pointer-events-none opacity-0",
         ].join(" ")}
       >
         <div
-          className="absolute inset-0 bg-black/80 backdrop-blur-xl"
+          className="absolute inset-0 bg-black/75 backdrop-blur-md"
           onClick={() => setMobileOpen(false)}
         />
 
-        <div
+        <aside
           className={[
-            "absolute inset-y-0 right-0 flex w-full max-w-sm flex-col border-l border-white/10 bg-[#050505] shadow-[0_20px_100px_rgba(0,0,0,0.6)] transition-transform duration-500",
+            "absolute inset-y-0 right-0 flex w-full max-w-[90%] flex-col border-l border-white/10 bg-black/92 backdrop-blur-xl shadow-[0_20px_100px_rgba(0,0,0,0.65)] transition-transform duration-500",
             mobileOpen ? "translate-x-0" : "translate-x-full",
           ].join(" ")}
         >
-          <div className="flex items-center justify-between border-b border-white/10 px-6 py-5">
+          <div className="flex items-center justify-between border-b border-white/10 px-6 pb-6 pt-6">
             <Link
               href="/"
               aria-label="Shots in Motion home"
               className="relative flex items-center"
             >
               <Image
-                src="/logo/logo00.svg"
+                src="/images/logo00.svg"
                 alt="Shots in Motion"
                 width={150}
                 height={50}
-                className="h-auto w-[130px]"
+                className="h-auto w-[120px]"
               />
             </Link>
 
@@ -142,14 +142,14 @@ export default function Navbar() {
               type="button"
               aria-label="Close menu"
               onClick={() => setMobileOpen(false)}
-              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-white transition hover:bg-white/10"
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-black/30 text-white transition hover:bg-white/10"
             >
-              <X size={20} />
+              <X size={18} />
             </button>
           </div>
 
-          <div className="flex flex-1 flex-col justify-between px-6 py-8">
-            <div className="space-y-2">
+          <div className="flex flex-1 flex-col px-6 pb-6 pt-8">
+            <nav className="flex flex-col gap-4">
               {navLinks.map((link) => {
                 const active =
                   pathname === link.href || pathname.startsWith(`${link.href}/`);
@@ -159,32 +159,34 @@ export default function Navbar() {
                     key={link.href}
                     href={link.href}
                     className={[
-                      "block rounded-2xl border px-5 py-4 text-lg uppercase tracking-[0.18em] transition",
+                      "rounded-[22px] border px-6 py-5 text-left text-sm uppercase tracking-[0.28em] transition",
                       active
-                        ? "border-[#c6a66b]/30 bg-[#c6a66b]/10 text-white"
-                        : "border-white/8 bg-white/[0.02] text-white/80 hover:bg-white/[0.06] hover:text-white",
+                        ? "border-[#c6a66b]/35 bg-[#c6a66b]/10 text-white"
+                        : "border-white/10 bg-white/[0.02] text-white/85 hover:bg-white/[0.06]",
                     ].join(" ")}
                   >
                     {link.label}
                   </Link>
                 );
               })}
-            </div>
+            </nav>
 
-            <div className="mt-10 space-y-4 border-t border-white/10 pt-6">
-              <Link
-                href="/booking"
-                className="inline-flex w-full items-center justify-center rounded-full bg-[#c6a66b] px-6 py-4 text-xs uppercase tracking-[0.24em] text-black transition hover:opacity-90"
-              >
-                Book a Session
-              </Link>
+            <div className="mt-auto pt-10">
+              <div className="border-t border-white/10 pt-8">
+                <Link
+                  href="/contact"
+                  className="flex h-14 items-center justify-center rounded-full bg-[#c6a66b] text-xs uppercase tracking-[0.28em] text-black transition hover:opacity-90"
+                >
+                  Book a Session
+                </Link>
 
-              <p className="text-center text-xs uppercase tracking-[0.28em] text-white/40">
-                Tampa Cinematic Photography
-              </p>
+                <p className="mt-6 text-center text-[10px] uppercase tracking-[0.32em] text-white/35">
+                  Tampa Cinematic Photography
+                </p>
+              </div>
             </div>
           </div>
-        </div>
+        </aside>
       </div>
     </>
   );
